@@ -34,10 +34,12 @@ const checkout = async (req, res) => {
                 if (_deal) return res.status(201).json({ url: session.url, dealId: _deal._id })
             })
         } else {
-            res.status(400).json({ msg: `session not created` })
+            console.log("session not created");
+            res.status(400).json({ msg: `session not created`, error: new Error("session not created") })
         }
     } catch (e) {
-        return res.status(400).json({ msg: e })
+        console.log("something wrong", e.toString());
+        return res.status(400).json({ msg: "Something went wrong", error: e})
     }
 }
 

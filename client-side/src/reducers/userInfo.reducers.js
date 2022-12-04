@@ -16,7 +16,6 @@ const initialState = {
 }
 
 const userInfoReducer = (state = initialState, action) => {
-    console.log(action);
     switch (action.type) {
         case userInfoConstants.USER_INFO_REQUEST:
             state = {

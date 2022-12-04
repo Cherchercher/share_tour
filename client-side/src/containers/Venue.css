@@ -1,0 +1,18 @@
+.action-icons {
+    margin-bottom: 10px;
+}
+.action-icons div {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.labeled-icon {
+    border: 1px solid black;
+    width: fit-content;   
+    height: 37px;
+    padding: 5px;
+}
+
+.icon-with-text {
+    height: 20px;
+}

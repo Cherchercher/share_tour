@@ -11,13 +11,13 @@ import AddVenueModel from '../components/UI/AddVenueModel';
 import getDeals from '../actions/dealsHistory.actions';
 
 const ProfilePage = (props) => {
-    document.title = "KAPPA | Profile";
+    document.title = "ShareTour | Profile";
     const dispatch = useDispatch();
     const auth = useSelector(state => state.auth);
     const userInfo = useSelector(state => state.userInfo);
     const ownerVenues = useSelector(state => state.ownerVenues);
     const deals = useSelector(state => state.deals);
-
+    console.log("profile is", userInfo);
     const [addVenueModalShow, setAddVenueModalShow] = useState(false);
 
     if (auth.token === null) {
@@ -83,8 +83,7 @@ const ProfilePage = (props) => {
                                                         return (
                                                             <div className="col-sm-6 mb-3">
                                                                 <VenueCard
-                                                                    img1={venuePictures[0].img}
-                                                                    img2={venuePictures[1].img}
+                                                                    images={venuePictures}
                                                                     venueName={venueName}
                                                                     _id={_id}
                                                                     category={category}

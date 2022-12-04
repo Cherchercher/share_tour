@@ -8,7 +8,7 @@ const MessageBox = (props) => {
                 <Modal.Title>Message</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <h5 style={{ marginBottom: "10px" }}>{props.message}</h5>
+                <h5 style={{ marginBottom: "10px", whiteSpace: "pre-wrap"}}>{props.message}</h5>
                 <Button variant="primary" onClick={props.onHide}>
                     Close
                 </Button>

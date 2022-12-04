@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { getOneVenue } from '../../actions/venue.actions';
-import { getPublicURL } from '../../urlConfig';
 import { ImgsCard } from './ImgsCard';
 import { useDispatch, useSelector } from 'react-redux';
 import BookingModel from './BookingModel';
@@ -10,7 +9,7 @@ import BookingModel from './BookingModel';
 const VenueCard = (props) => {
 
     const [bookingModalShow, setBookingModalShow] = useState(false);
-    const { img1, img2, category, venueName, ownerId, _id, price, location, address, style, isDelete } = props;
+    const { images, category, venueName, ownerId, _id, price, location, address, style, isDelete } = props;
 
     const auth = useSelector(state => state.auth);
 
@@ -22,8 +21,7 @@ const VenueCard = (props) => {
     return (
         <div className="card mb-4 box-shadow">
             <ImgsCard
-                img1={getPublicURL(img1)}
-                img2={getPublicURL(img2)}
+                images={images}
                 alt='venue picture'
                 style={style}
             />
@@ -31,7 +29,7 @@ const VenueCard = (props) => {
                 <h6 className="card-subtitle mb-2 text-muted">{category}</h6>
                 <div className="d-flex justify-content-between align-items-center">
                     <h5 className="card-title">{venueName}</h5>
-                    <h5 className="card-title">₹ {price}</h5>
+                    <h5 className="card-title">$ {price}</h5>
                 </div>
                 <h6 className="card-subtitle mb-2 text-muted">{location}, {address}</h6>
 

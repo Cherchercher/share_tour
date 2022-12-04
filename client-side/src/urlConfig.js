@@ -1,4 +1,4 @@
-export const api = 'http://localhost:2000/api';
+export const api = 'http://localhost:5050/api';
 export const getPublicURL = (filename) => {
-    return `http://localhost:2000/public/${filename}`;
+    return `http://localhost:5050/public/${filename}`;
 }

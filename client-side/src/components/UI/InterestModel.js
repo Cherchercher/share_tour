@@ -1,63 +1,66 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form, Row, Col, Spinner } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 
 import DateRangePicker from '@wojtekmaj/react-daterange-picker';
 import Input from './Input';
-import { useDispatch, useSelector } from 'react-redux';
 import MessageBox from './MessageBox';
+
+import { useDispatch, useSelector } from 'react-redux';
 import axios from '../../helpers/axios';
 
-const BookingModel = (props) => {
+const InterestModel = (props) => {
 
-    const { _id, venueName, price, category, location, ownerId, address } = props;
+    const { tourId, price } = props;
     const [date, setDate] = useState([new Date(), new Date()]);
     const [numberOfPeople, setNumberOfPeople] = useState(1);
+    const [message, setMessage] = useState("Interest successfully submitted!");
+    const [budgetPerPerson, setBudgetPerPerson] = useState(price);
     const [messageModalShow, setMessageModalShow] = useState(false);
-    const [message, setMessage] = useState("set message");
-    const [budget, setBudget] = useState(price);
     const [currency, setCurrency] = useState("USD");
     const [isLoading, setIsLoading] = useState(false);
-
     const auth = useSelector(state => state.auth);
-    
-    const gotoCheckoutPage = async (e) => {
+    console.log("auth info is", auth.user)
+    const submitInterest = async (e) => {
         if (!auth.authenticate) {
             return <Redirect to={'/signin'} />
         }
         else {
             e.preventDefault();
             setIsLoading(true);
-            const dealInfo = {
-                venueId: _id,
-                venueName: venueName,
-                venueOwnerId: ownerId,
-                bill: price,
-                eventDate: date.toString()
+            const interestInfo = {
+                tourId,
+                numberOfPeople,
+                budgetPerPerson,
+                currency,
+                date,
+                userInfo: auth.user
             }
-            try {
-                const res = await axios.post(`/checkout`, dealInfo);
-                setMessageModalShow(true);
-                setIsLoading(false);
-                if (res.status !== 200) {
-                    console.log(res.data.error);
-                    setMessage(res.data.error.toString());
-                    // res.data._venue, show some information like name, email or text
-                } else {
-                    setMessage("checkout success!");
-                }
-                localStorage.setItem('dealId', JSON.stringify(res.data.dealId));
-                window.location.href = res.data.url;
-            } catch (e) {
-                setIsLoading(false);
-                setMessageModalShow(true);
-                setMessage(e.toString());
+            const res = await axios.post(`/create-interest`, interestInfo);
+            setMessageModalShow(true);
+            setIsLoading(false);
+            if (res.status !== 201) {
+                console.log(res.data.error.toString());
+                setMessage(res.data.error.toString());
+                // res.data._venue, show some information like name, email or text
+            } else {
+                setMessage(res.data.msg);
             }
+            // else {
+                //   log the error msg: res.data.msg,
+                // error: res.data.error
+                // some error message
+            //     setMessage(true);
+            //     return <MessageBox
+            //     show={messageModalShow}
+            //     onHide={() => setMessageModalShow(false)}
+            //     message={res.data.error}
+            // />
         }
     }
 
     return (
+        
         <Modal
             {...props}
             size="lg"
@@ -76,7 +79,7 @@ const BookingModel = (props) => {
                     message={message}
                 />
             <Modal.Body>
-                <Form onSubmit={gotoCheckoutPage}>
+                <Form onSubmit={submitInterest}>
                     <Row>
                         <Col md={6}>
                             <Form.Group className="mb-3">
@@ -91,8 +94,10 @@ const BookingModel = (props) => {
                             <Input
                                 label='How many people are in your group?'
                                 type='number'
-                                value={numberOfPeople}
-                                
+                                onChange={e => {
+                                    setNumberOfPeople(e.target.value);
+                                }}
+                                value={numberOfPeople} 
                                 isReadOnly={false}
                             />
                         </Col>
@@ -119,7 +124,10 @@ const BookingModel = (props) => {
                             <Input
                                 label='budget per person'
                                 type='number'
-                                value={budget}
+                                value={budgetPerPerson}
+                                onChange={e => {
+                                    setBudgetPerPerson(e.target.value);
+                                }}
                                 isReadOnly={false}
                                 message='With Service tax included in Bill'
                             />
@@ -147,4 +155,4 @@ const BookingModel = (props) => {
     );
 }
 
-export default BookingModel
+export default InterestModel

@@ -17,12 +17,16 @@ const dealerAuthRoutes = require('./routes/dealer.auth');
 const clientAuthRoutes = require('./routes/client.auth');
 const venueRoutes = require('./routes/venue');
 const dealsRoutes = require('./routes/deal');
+const interestRoutes = require('./routes/interest');
+// const tourRoutes = require('./routes/tour');
 
 app.use("/public", express.static(path.join(__dirname, "uploads")));
 app.use('/api', dealerAuthRoutes);
 app.use('/api', clientAuthRoutes);
 app.use('/api', venueRoutes);
 app.use('/api', dealsRoutes);
+app.use('/api', interestRoutes);
+// app.use('/api', tourRoutes);
 
 // mongodb connection
 const connectDB = (dburl) => {

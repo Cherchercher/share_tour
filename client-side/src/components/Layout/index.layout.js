@@ -76,7 +76,7 @@ const Layout = (props) => {
             <>
                 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" style={{ marginBottom: "15px" }}>
                     <Container>
-                        <Link to={`/`} className="navbar-brand">🤝KAPPA</Link>
+                        <Link to={`/`} className="navbar-brand">🤝ShareTour</Link>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse id="responsive-navbar-nav">
                             <Nav className="me-auto"></Nav>

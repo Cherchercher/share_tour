@@ -5,7 +5,9 @@ const router = express.Router();
 
 router.post('/dealer/signup', signup);
 router.post('/dealer/signin', signin);
-router.post('/sign-out', requireSignIn, signout);
+// router.post('/sign-out', requireSignIn, signout);
+// handle jwt expired when signout requires sign in
+router.post('/sign-out', signout);
 router.get('/dealer/:userId', requireSignIn, dealerMiddleware, DealerProfile);
 
 module.exports = router;

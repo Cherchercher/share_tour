@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "@wojtekmaj/react-daterange-picker": "^4.1.0",
     "axios": "^0.21.2",
     "bootstrap": "^5.1.0",
     "boring-avatars": "^1.5.8",
@@ -17,6 +18,7 @@
     "react-scripts": "5.0.1",
     "redux": "^4.1.1",
     "redux-thunk": "^2.3.0",
+    "revo-calendar": "file:/Users/xiaoxuah/Workspace/revo-calendar-customized",
     "web-vitals": "^1.1.2"
   },
   "scripts": {

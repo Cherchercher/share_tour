@@ -3,6 +3,7 @@ import Layout from '../components/Layout/index.layout'
 import { Button, Container, Row, Col, Card } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useHistory } from "react-router";
 import { LoginModel } from '../components/UI/LoginModel';
 
 // Images
@@ -10,9 +11,10 @@ import client_signin from '../assets/images/client-signin.svg';
 import dealer_signin from '../assets/images/dealer-signin.svg';
 
 const Signin = () => {
-    document.title = "KAPPA | Sign In";
+    document.title = "ShareTour | Sign In";
     const [userModalShow, setUserModalShow] = useState(false);
     const [DealerModalShow, setDealerModalShow] = useState(false);
+    const history = useHistory();
 
     const auth = useSelector(state => state.auth);
     if (auth.authenticate) {
@@ -22,7 +24,9 @@ const Signin = () => {
     return (
         <Layout>
             <Container className="text-center">
-                <h2>✨Log In Options✨</h2>
+                <h2>✨Log Ins✨  <Button variant="secondary" onClick={() => history.push("/signup")}>
+                    Sign Up
+                </Button></h2> 
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <Row className='text-center'>
                         <Col md="auto" className="d-flex justify-content-center">

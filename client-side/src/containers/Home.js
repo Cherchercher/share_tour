@@ -8,7 +8,7 @@ import { getPublicURL } from '../urlConfig';
 import { isEmpty } from '../helpers/isObjEmpty';
 
 function Home() {
-    document.title = "KAPPA | Home";
+    document.title = "ShareTour | Home";
     const allVenuesInfo = useSelector(state => state.allVenuesInfo);
     const auth = useSelector(state => state.auth);
     const dispatch = useDispatch();
@@ -21,7 +21,7 @@ function Home() {
         return (
             <Layout>
                 <div className='text-center' style={{ marginTop: '60px' }}>
-                    <h1>Getting all venues 🎉</h1>
+                    <h1>Getting all tours near you 🎉</h1>
                     <Spinner animation="border" variant="success" />
                 </div>
             </Layout>
@@ -46,8 +46,7 @@ function Home() {
                                 return (
                                     <div className="col-md-4">
                                         <VenueCard
-                                            img1={venuePictures[0].img}
-                                            img2={venuePictures[1].img}
+                                            images={venuePictures}
                                             venueName={venueName}
                                             _id={_id}
                                             userId={auth.user._id}
