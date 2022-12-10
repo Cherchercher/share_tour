@@ -40,7 +40,6 @@ const InterestModel = (props) => {
             setMessageModalShow(true);
             setIsLoading(false);
             if (res.status !== 201) {
-                console.log(res.data.error.toString());
                 setMessage(res.data.error.toString());
                 // res.data._venue, show some information like name, email or text
             } else {
