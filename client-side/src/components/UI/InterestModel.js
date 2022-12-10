@@ -20,7 +20,7 @@ const InterestModel = (props) => {
     const [currency, setCurrency] = useState("USD");
     const [isLoading, setIsLoading] = useState(false);
     const auth = useSelector(state => state.auth);
-    console.log("auth info is", auth.user)
+
     const submitInterest = async (e) => {
         if (!auth.authenticate) {
             return <Redirect to={'/signin'} />
@@ -41,20 +41,9 @@ const InterestModel = (props) => {
             setIsLoading(false);
             if (res.status !== 201) {
                 setMessage(res.data.error.toString());
-                // res.data._venue, show some information like name, email or text
             } else {
                 setMessage(res.data.msg);
             }
-            // else {
-                //   log the error msg: res.data.msg,
-                // error: res.data.error
-                // some error message
-            //     setMessage(true);
-            //     return <MessageBox
-            //     show={messageModalShow}
-            //     onHide={() => setMessageModalShow(false)}
-            //     message={res.data.error}
-            // />
         }
     }
 
