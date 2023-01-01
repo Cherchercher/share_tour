@@ -57,7 +57,7 @@ const getOneVenue = (id) => {
         });
 
         const res = await axios.get(`/venue/${id}`);
-
+        
         if (res.status === 200) {
             dispatch({
                 type: venueConstants.GETONE_VENUE_SUCCESS,

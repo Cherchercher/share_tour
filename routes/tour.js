@@ -1,6 +1,6 @@
 const express = require('express');
 const { requireSignIn, dealerMiddleware } = require('../common_middlewares/index')
-const { createEvent, getEventByEventId,  getAllEventsByTourId, getAllEventsByOwnerId } = require('../controllers/event');
+const { getAllVenues, createVenue, getVenueByVenueId, getAllVenuesByOwnerId, checkAvailability } = require('../controllers/venue');
 const router = express.Router();
 const multer = require('multer')
 const shortid = require('shortid')
@@ -17,9 +17,10 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-router.post('/create-event', requireSignIn, dealerMiddleware, createEvent)
-router.get('/event/:eventId', getEventByEventId)
-// router.get('/events/:ownerId', getAllEventsByOwnerId)
-router.get('/events/:tourId', getAllEventsByTourId);
+router.post('/create-venue', requireSignIn, dealerMiddleware, upload.array('venuePicture'), createVenue)
+router.get('/venue/:venueId', getVenueByVenueId)
+router.get('/venues/:ownerId', getAllVenuesByOwnerId)
+router.get('/all-venues', getAllVenues);
+router.get('/available', checkAvailability)
 
 module.exports = router;

@@ -5,8 +5,7 @@ const Tour = require('../models/tour');
 
 //add error if mis matched data model
 const createInterest = (req, res) => {
-    const { tourId, numberOfPeople, budgetPerPerson, currency, date, userInfo } = req.body;
-
+    const { tourId, numberOfPeople, budgetPerPerson, currency, dates, userInfo } = req.body;
 //     contactNumber
 // : 
 // "0000000000"
@@ -37,13 +36,12 @@ const createInterest = (req, res) => {
         numberOfPeople,
         budgetPerPerson,
         currency,
-        dates: date,
+        dates: dates,
         userInfo
     });
 
     interest.save((error, _interest) => {
         if (error) {
-            console.log(error);
             return res.status(400).json({ msg: `While saving interest something went wrong`, error });
         }
         if (_interest) {
@@ -57,9 +55,22 @@ const getInterestsByTourId = (req, res) => {
     const { tourId } = req.params;
     if (tourId) {
         Interest.find({ tourId })
-        .exec((error, _allinterests) => {
+        .exec((error, _interests) => {
             if (error) return res.status(400).json({ msg: `Something went wrong in finding all interests`, error });
-            if (_allvenues) res.status(200).json({ _allinterests });
+            if (_interests) res.status(200).json({ _interests });
+        })
+    } else {
+        return res.status(400).json({ msg: `Tour dosen't exit` });
+    }
+}
+
+const getNumberOfInterestsByTourId = (req, res) => {
+    const { tourId } = req.params;
+    if (tourId) {
+        Interest.count({ tourId })
+        .exec((error, _numberOfInterests) => {
+            if (error) return res.status(400).json({ msg: `Something went wrong in finding all interests`, error });
+            if (_numberOfInterests != null) res.status(200).json({ _numberOfInterests });
         })
     } else {
         return res.status(400).json({ msg: `Tour dosen't exit` });
@@ -68,5 +79,6 @@ const getInterestsByTourId = (req, res) => {
 
 module.exports = {
     createInterest,
-    getInterestsByTourId
+    getInterestsByTourId,
+    getNumberOfInterestsByTourId
 }

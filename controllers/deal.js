@@ -3,7 +3,6 @@ const Deal = require('../models/deal');
 
 const checkout = async (req, res) => {
     const { venueId, eventDate, bill, venueName, venueOwnerId } = req.body;
-
     try {
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],

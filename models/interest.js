@@ -8,7 +8,7 @@ const interestSchema = new mongoose.Schema({
         type: String,
     },
     dates: {
-        type: Array,
+        type: Object,
         require: true
     },
     userInfo: {

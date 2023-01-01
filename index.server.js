@@ -15,10 +15,10 @@ app.use(express.json());
 // Routes
 const dealerAuthRoutes = require('./routes/dealer.auth');
 const clientAuthRoutes = require('./routes/client.auth');
-const venueRoutes = require('./routes/venue');
+const venueRoutes = require('./routes/tour');
 const dealsRoutes = require('./routes/deal');
 const interestRoutes = require('./routes/interest');
-// const tourRoutes = require('./routes/tour');
+const eventRoutes = require('./routes/event');
 
 app.use("/public", express.static(path.join(__dirname, "uploads")));
 app.use('/api', dealerAuthRoutes);
@@ -26,7 +26,7 @@ app.use('/api', clientAuthRoutes);
 app.use('/api', venueRoutes);
 app.use('/api', dealsRoutes);
 app.use('/api', interestRoutes);
-// app.use('/api', tourRoutes);
+app.use('/api', eventRoutes);
 
 // mongodb connection
 const connectDB = (dburl) => {

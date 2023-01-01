@@ -40,7 +40,7 @@ const BookingModel = (props) => {
                 const res = await axios.post(`/checkout`, dealInfo);
                 setMessageModalShow(true);
                 setIsLoading(false);
-                if (res.status !== 200) {
+                if (res.status !== 201) {
                     console.log(res.data.error);
                     setMessage(res.data.error.toString());
                     // res.data._venue, show some information like name, email or text

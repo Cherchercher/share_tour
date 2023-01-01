@@ -4,6 +4,8 @@ import registerReducer from './register.reducers';
 import userInfoReducer from './userInfo.reducers';
 import venuesInfoReducer from './allVenues.reducers';
 import oneVenueInfoReducer from './venue.reducers';
+import interestsInfoReducer from './allInterests.reducers';
+import eventsInfoReducer from './allEvents.reducers';
 import getOwnerVenuesReducer from './ownerVenues.reducers';
 import addVenueReducer from './addVenue.reducers';
 import dealsReducer from './dealsHistory.reducers';
@@ -16,6 +18,8 @@ const rootReducer = combineReducers({
     allVenuesInfo: venuesInfoReducer,
     oneVenueInfo: oneVenueInfoReducer,
     ownerVenues: getOwnerVenuesReducer,
+    interestsInfo: interestsInfoReducer,
+    eventsInfo: eventsInfoReducer,
     addVenueStatus: addVenueReducer,
     deals: dealsReducer,
     serverStatus: serverReducer

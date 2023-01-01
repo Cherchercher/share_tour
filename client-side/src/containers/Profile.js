@@ -17,7 +17,6 @@ const ProfilePage = (props) => {
     const userInfo = useSelector(state => state.userInfo);
     const ownerVenues = useSelector(state => state.ownerVenues);
     const deals = useSelector(state => state.deals);
-    console.log("profile is", userInfo);
     const [addVenueModalShow, setAddVenueModalShow] = useState(false);
 
     if (auth.token === null) {

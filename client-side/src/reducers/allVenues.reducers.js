@@ -7,7 +7,6 @@ const initialState = {
 }
 
 const venuesInfoReducer = (state = initialState, action) => {
-    console.log(action);
     switch (action.type) {
         case venueConstants.GETALL_VENUES_REQUEST:
             state = {
@@ -26,7 +25,7 @@ const venuesInfoReducer = (state = initialState, action) => {
             state = {
                 ...state,
                 loading: false,
-                message: 'Something went wrong...!'
+                message: 'Something went wrong when fetching venues...!'
             }
             break;
 

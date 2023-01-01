@@ -12,6 +12,7 @@
     "boring-avatars": "^1.5.8",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.1",
+    "react-datepicker": "^4.8.0",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.1",
@@ -25,7 +26,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "link": "sudo npm-run-all -s link:*",
+    "link:lib-self": "cd ~/Workspace/revo-calendar-customized && sudo npm link",
+    "link:lib-react": "cd ~/Workspace/revo-calendar-customized && sudo npm link ~/Workspace/venue_booking_site/client-side/node_modules/react ~/Workspace/venue_booking_site/client-side/node_modules/react-dom",
+    "link:app-to-lib": "sudo npm link revo-calendar"
   },
   "eslintConfig": {
     "extends": [
@@ -44,5 +49,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
   }
 }

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { getOneVenue } from '../../actions/venue.actions';
+import { getNumberOfInterestsByTourId } from '../../actions/interest.actions';
 import { ImgsCard } from './ImgsCard';
 import { useDispatch, useSelector } from 'react-redux';
 import BookingModel from './BookingModel';
@@ -16,6 +17,7 @@ const VenueCard = (props) => {
     const dispatch = useDispatch()
     const getVenueInfo = () => {
         dispatch(getOneVenue(_id));
+        dispatch(getNumberOfInterestsByTourId(_id));
     }
 
     return (
